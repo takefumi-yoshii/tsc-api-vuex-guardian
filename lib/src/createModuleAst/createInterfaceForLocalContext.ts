@@ -1,0 +1,70 @@
+import * as ts from 'typescript'
+import { FileInfo, Constants } from '../types'
+//_______________________________________________________
+//
+export const createInterfaceForLocalContext = (
+  fileInfo: FileInfo,
+  constants: Constants
+) =>
+  ts.createInterfaceDeclaration(
+    undefined,
+    undefined,
+    ts.createIdentifier(constants.LOCAL_CONTEXT),
+    undefined,
+    undefined,
+    [
+      ts.createPropertySignature(
+        undefined,
+        ts.createStringLiteral(fileInfo.nameSpace),
+        undefined,
+        ts.createTypeReferenceNode(
+          ts.createIdentifier(constants.STRICT_CONTEXT),
+          [
+            ts.createIndexedAccessTypeNode(
+              ts.createTypeReferenceNode(
+                ts.createIdentifier(constants.LOCAL_STATE),
+                undefined
+              ),
+              ts.createLiteralTypeNode(
+                ts.createStringLiteral(fileInfo.nameSpace)
+              )
+            ),
+            ts.createIndexedAccessTypeNode(
+              ts.createTypeReferenceNode(
+                ts.createIdentifier(
+                  constants.LOCAL_GETTERS
+                ),
+                undefined
+              ),
+              ts.createLiteralTypeNode(
+                ts.createStringLiteral(fileInfo.nameSpace)
+              )
+            ),
+            ts.createIndexedAccessTypeNode(
+              ts.createTypeReferenceNode(
+                ts.createIdentifier(
+                  constants.LOCAL_MUTATION_TYPES
+                ),
+                undefined
+              ),
+              ts.createLiteralTypeNode(
+                ts.createStringLiteral(fileInfo.nameSpace)
+              )
+            ),
+            ts.createIndexedAccessTypeNode(
+              ts.createTypeReferenceNode(
+                ts.createIdentifier(
+                  constants.LOCAL_ACTION_TYPES
+                ),
+                undefined
+              ),
+              ts.createLiteralTypeNode(
+                ts.createStringLiteral(fileInfo.nameSpace)
+              )
+            )
+          ]
+        ),
+        undefined
+      )
+    ]
+  )
