@@ -48,7 +48,7 @@ const getPropertySignature = (
   )
 //_______________________________________________________
 //
-const createPropertySignaturesFromSourceFile = (
+const getPropertySignaturesFromSourceFile = (
   sourceFile: ts.SourceFile,
   fileInfo: FileInfo,
   wrapUtilityTypeName: string,
@@ -99,7 +99,7 @@ export const createInterfaceForLocal = (
         ts.createStringLiteral(fileInfo.nameSpace),
         undefined,
         ts.createTypeLiteralNode(
-          createPropertySignaturesFromSourceFile(
+          getPropertySignaturesFromSourceFile(
             sourceFile,
             fileInfo,
             wrapUtilityTypeName,
