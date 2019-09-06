@@ -3,7 +3,7 @@ import { FileInfo } from '../types'
 import {
   isExpectedIdentifierVariableStatement,
   getVariableDeclarationFromVariableStatement,
-  getMethodDeclarationNamesFromVariableDeclaration
+  getMethodNamesFromVariableDeclaration
 } from './helpers'
 //_______________________________________________________
 //
@@ -61,7 +61,7 @@ const getPropertySignaturesFromSourceFile = (
       )
     )
     .map(getVariableDeclarationFromVariableStatement)
-    .map(getMethodDeclarationNamesFromVariableDeclaration)
+    .map(getMethodNamesFromVariableDeclaration)
     .map(identifiers =>
       identifiers.map(identifier =>
         getPropertySignature(
