@@ -9,7 +9,7 @@ import {
 //
 const getPropertySignature = (
   fileInfo: FileInfo,
-  wrapUtilityTypeName: string,
+  utilityTypeName: string,
   variableDeclarationName: string,
   identifier: string,
   constants: Constants
@@ -19,7 +19,7 @@ const getPropertySignature = (
     ts.createIdentifier(identifier),
     undefined,
     ts.createTypeReferenceNode(
-      ts.createIdentifier(wrapUtilityTypeName),
+      ts.createIdentifier(utilityTypeName),
       [
         ts.createIndexedAccessTypeNode(
           ts.createIndexedAccessTypeNode(
@@ -51,7 +51,7 @@ const getPropertySignature = (
 const getPropertySignaturesFromSourceFile = (
   sourceFile: ts.SourceFile,
   fileInfo: FileInfo,
-  wrapUtilityTypeName: string,
+  utilityTypeName: string,
   variableDeclarationName: string,
   constants: Constants
 ) =>
@@ -70,7 +70,7 @@ const getPropertySignaturesFromSourceFile = (
       identifiers.map(identifier =>
         getPropertySignature(
           fileInfo,
-          wrapUtilityTypeName,
+          utilityTypeName,
           variableDeclarationName,
           identifier,
           constants
@@ -83,7 +83,7 @@ export const createInterfaceForLocal = (
   sourceFile: ts.SourceFile,
   fileInfo: FileInfo,
   distTypeName: string,
-  wrapUtilityTypeName: string,
+  utilityTypeName: string,
   variableDeclarationName: string,
   constants: Constants
 ) =>
@@ -102,7 +102,7 @@ export const createInterfaceForLocal = (
           getPropertySignaturesFromSourceFile(
             sourceFile,
             fileInfo,
-            wrapUtilityTypeName,
+            utilityTypeName,
             variableDeclarationName,
             constants
           )
